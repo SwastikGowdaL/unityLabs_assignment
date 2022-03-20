@@ -20,6 +20,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  catalog_id: {
+    type: String,
+  },
 });
 
 const Users = mongoose.model('Users', userSchema);

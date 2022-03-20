@@ -1,4 +1,6 @@
 const authServices = require('./auth_services');
+const buyerServices = require('./buyer_services');
+const sellerServices = require('./seller_services');
 
 const registerUser = async (req, res) => {
   try {
@@ -25,7 +27,33 @@ const loginUser = async (req, res) => {
   }
 };
 
+const retrieveSellers = async (req, res) => {
+  try {
+    const sellers = await buyerServices.retrieveSellers();
+    res.status(200).send(sellers);
+  } catch (err) {
+    res.status(400).send({ status: 'failed', message: err.message });
+  }
+};
+
+const createCatalog = async (req, res) => {
+  try {
+    const { seller_id, products } = req.body;
+    const catalog = await sellerServices.createCatalog(seller_id, products);
+    res.status(200).send({
+      status: 'success',
+      seller_id: catalog.seller_id,
+      products: catalog.products,
+      catalog_id: catalog._id,
+    });
+  } catch (err) {
+    res.status(400).send({ status: 'failed', message: err.message });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  retrieveSellers,
+  createCatalog,
 };

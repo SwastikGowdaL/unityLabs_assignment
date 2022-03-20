@@ -1,4 +1,5 @@
 require('../db/mongoose');
+const Catalog = require('../Schema/catalog');
 const Users = require('../Schema/users');
 
 const saveUser = async ({ name, password, user_type, auth_token }) =>
@@ -11,6 +12,21 @@ const checkUserExistence = async ({ name, password }) =>
   );
 
 const querySellers = async () =>
-  Users.find({ user_type: 'seller' }, { __v: 0, password: 0, user_type: 0 });
+  Users.find(
+    { user_type: 'seller' },
+    { __v: 0, password: 0, user_type: 0, auth_token: 0 }
+  );
 
-module.exports = { saveUser, checkUserExistence, querySellers };
+const updateSellerCatalogID = async (seller_id, catalog_id) =>
+  Users.findOneAndUpdate({ seller_id }, { catalog_id });
+
+const createCatalog = async (seller_id, products) =>
+  new Catalog({ seller_id, products }).save();
+
+module.exports = {
+  saveUser,
+  checkUserExistence,
+  querySellers,
+  createCatalog,
+  updateSellerCatalogID,
+};

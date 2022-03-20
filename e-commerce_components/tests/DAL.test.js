@@ -25,6 +25,14 @@ test('check user', async () => {
 
 test('query list of sellers', async () => {
   const sellers = await DAL.querySellers();
-  console.log(sellers);
   expect(sellers).not.toBeFalsy();
+});
+
+test('create catalog', async () => {
+  const catalog = await DAL.createCatalog('62371ead8228340839ec47f3', [
+    { name: 'sofa', price: '20000' },
+    { name: 'bed', price: '50000' },
+  ]);
+  console.log(catalog);
+  expect(catalog).not.toBeFalsy();
 });
