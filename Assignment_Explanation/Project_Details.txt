@@ -1,0 +1,12 @@
+Short Description -
+1. I have adopted the separation of concerns pattern, where I have divided the whole project into three layers(web,businees logic & DAL layer).
+2. Exposed API endpoints for communicating with the services.(Code for the API endpoints can be found in the routers.)
+3. Used eslint to write clean code and avoid potential code smells and because of good variable naming, most of the code is pretty much self explanatory, eliminating the need for comments.
+4. I have used MongoDB, which is one of the most popular document-based NoSQL databases, which provides us with a lot of flexibility and has rich features built-in for performing DB operations.
+5. Created and defined three collections (users,catalog,orders) - The implementation for these can be found in Schema folder.
+6. Created API Documentation with the help of Postman.
+
+Technologies Used -
+Programming languages - Javascript, Node.js(js runtime)
+Database - mongodb
+Other tools/technologies - Express,mongoose(ODM),Postman etc..,

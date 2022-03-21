@@ -1,5 +1,7 @@
 # unityLabs_assignment
 
+### Note - Please go through the Assignment_Explanation folder for the explanation of the project.
+
 ## steps to execute -
 
 ### note - make sure node and mongodb are installed
