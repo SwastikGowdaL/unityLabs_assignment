@@ -11,6 +11,7 @@ const registerUser = async (req, res) => {
       auth_token: user.auth_token,
       name: user.name,
       user_type: user.user_type,
+      seller_id: user._id,
     });
   } catch (err) {
     res.status(400).send({ status: 'failed', message: err.message });
@@ -51,9 +52,75 @@ const createCatalog = async (req, res) => {
   }
 };
 
+const retrieveCatalog = async (req, res) => {
+  try {
+    const { seller_id } = req.params;
+    const catalog = await buyerServices.retrieveCatalog(seller_id);
+    res.status(200).send({
+      status: 'success',
+      products: catalog.products,
+      catalog_id: catalog._id,
+      seller_id: catalog.seller_id,
+    });
+  } catch (err) {
+    res.status(400).send({ status: 'failed', message: err.message });
+  }
+};
+
+const placeOrder = async (req, res) => {
+  try {
+    const { seller_id } = req.params;
+    const { buyer_id, catalog_id, products } = req.body;
+    const order = await buyerServices.placeOrder(
+      seller_id,
+      buyer_id,
+      catalog_id,
+      products
+    );
+    res.status(200).send({
+      status: 'success',
+      order_id: order._id,
+    });
+  } catch (err) {
+    res.status(400).send({ status: 'failed', message: err.message });
+  }
+};
+
+const retrieveOrders = async (req, res) => {
+  try {
+    const { seller_id } = req.params;
+    const orders = await sellerServices.retrieveOrders(seller_id);
+    res.status(200).send({
+      status: 'success',
+      orders,
+    });
+  } catch (err) {
+    res.status(400).send({ status: 'failed', message: err.message });
+  }
+};
+
+const retrieveProductDetails = async (req, res) => {
+  try {
+    const { products } = req.body;
+    const productDetails = await sellerServices.retrieveProductDetails(
+      products
+    );
+    res.status(200).send({
+      status: 'success',
+      productDetails,
+    });
+  } catch (err) {
+    res.status(400).send({ status: 'failed', message: err.message });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   retrieveSellers,
   createCatalog,
+  retrieveCatalog,
+  placeOrder,
+  retrieveOrders,
+  retrieveProductDetails,
 };

@@ -13,10 +13,11 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  number_of_units_ordered: {
-    type: Number,
-    default: 1,
-  },
+  products: [
+    {
+      type: String,
+    },
+  ],
 });
 
 const orders = mongoose.model('orders', orderSchema);

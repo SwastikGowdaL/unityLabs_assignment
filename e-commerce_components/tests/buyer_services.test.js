@@ -7,6 +7,5 @@ afterAll(() => {
 
 test('retrieve list of sellers', async () => {
   const sellers = await buyerServices.retrieveSellers();
-  console.log(sellers);
   expect(sellers).not.toBeFalsy();
 });
