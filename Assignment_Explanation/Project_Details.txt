@@ -10,3 +10,8 @@ Technologies Used -
 Programming languages - Javascript, Node.js(js runtime)
 Database - mongodb
 Other tools/technologies - Express,mongoose(ODM),Postman etc..,
+
+API Docs -
+auth - https://documenter.getpostman.com/view/14691472/UVsQriGw
+buyer - https://documenter.getpostman.com/view/14691472/UVsQriGx
+seller - https://documenter.getpostman.com/view/14691472/UVsQriME
