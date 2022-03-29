@@ -11,7 +11,7 @@ const registerUser = async (req, res) => {
       auth_token: user.auth_token,
       name: user.name,
       user_type: user.user_type,
-      seller_id: user._id,
+      _id: user._id,
     });
   } catch (err) {
     res.status(400).send({ status: 'failed', message: err.message });
